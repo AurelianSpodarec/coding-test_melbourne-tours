@@ -1,0 +1,36 @@
+.landing-video {
+    background-color: black;
+    overflow: hidden;
+    max-height: 550px;
+    height: 550px;
+    margin-top: -1em;
+
+    &__wrap {
+        height: 100%;
+        position: relative;
+    }
+
+    &__video {
+        zoom: 1.6;
+        transform: translateY(-115px);
+    }
+
+    &__block {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background: rgba(0,0,0,.3);
+    }
+
+    &__caption {
+        position: absolute;
+        vertical-align: middle;
+        z-index: 20;
+        vertical-align: middle;
+        color: white;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10%;
+    }
+}

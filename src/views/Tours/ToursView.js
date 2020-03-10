@@ -1,34 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { getMalibourneTours } from '../../services/api/tours';
 
-
+import TourItem from './../TourItem/TourItem';
 
 function ToursView() {
-    const [tours, setTours] = useState([])
-
-    // fetch = async () => {
-    //     const res = await fetch('https://www.triposo.com/api/20190906/tour.json', {
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "X-Triposo-Account": "FV5UZZR2",
-    //             "X-Triposo-Token": "0v4hgiq3zyo304rc0p3kfkh19zd224lu"
-    //         }
-    //     })
-    //     console.log("PO", res)
-    // }
+    const [toursList, setToursList] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const fetchTours = async () => {
             const result = await getMalibourneTours();
-            setTours(result.results)
+            setToursList(result.results)
+            setIsLoading(false)
         };
         fetchTours();
     }, [])
-    console.log(tours)
+
+
+    function renderMalbourneTours() {
+        if (isLoading) {
+            return [...Array(9)].map((x, i) =>
+                // <Col key={i} md="4">
+                <TourItem loading />
+                // </Col>
+            )
+        } else if (toursList.length) {
+            return toursList.map(tour =>
+                // <Col key={tour.id} md="4">
+                <TourItem tour={tour} />
+                // </Col>
+            )
+        }
+
+        return "Not tours found. Please comeback later. :-("
+    }
+
 
     return (
         <div>
-            Tours
+            <aside>
+
+            </aside>
+
+            <section>
+                {renderMalbourneTours()}
+            </section>
         </div>
     )
 }

@@ -1,8 +1,14 @@
 import request from './../request/request';
-import { firebase } from './../../firebase';
+import firebase from './../../firebase';
 
 const signUp = async (data) => {
-    await firebase.createUserWithEmailAndPassword({ email: data.email, password: data.password })
+    console.log("Sig", firebase)
+    // const req = await firebase.auth().createUserWithEmailAndPassword({ email: data.email, password: data.password }).then(createdUser => {
+    //     createdUser.user
+    // })
+    const req = firebase.auth().createUserWithEmailAndPassword("admin@gmail.com", "admin123")
+    console.log(req)
+    return req;
 }
 
 const signIn = async () => {

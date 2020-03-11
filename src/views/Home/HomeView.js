@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import HomeVideo from './sections/HomeVideo/HomeVideo';
-import { Icon, Input, Button } from 'semantic-ui-react'
+import { Icon, Input, Button, Form } from 'semantic-ui-react'
 import { useForm } from '../../hooks';
 import { signUp } from '../../services/api/auth';
 
@@ -17,13 +17,14 @@ function Home() {
         await signUp({ email: values.email, password: values.password })
     }
 
+
     return (
         <div>
 
             <HomeVideo />
 
             <div>
-                <form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
+                <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
                     <h1>Sign up</h1>
                     <Input
                         iconPosition='left'
@@ -47,8 +48,9 @@ function Home() {
                         <Icon name='lock' />
                         <input />
                     </Input>
-                    <Button color='red'>Sign Up</Button>
-                </form>
+
+                    <Form.Field control={Button}> <Button color='red'>Sign Up</Button></Form.Field>
+                </Form>
 
                 <form>
                     <h1>Log in</h1>

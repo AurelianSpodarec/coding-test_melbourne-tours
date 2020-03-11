@@ -1,33 +1,23 @@
 import React from 'react';
-
+import { Grid, Image } from 'semantic-ui-react'
 const TourItem = ({ tour, loading }) => {
-    if (!tour) return "No";
-    // const counter = useSelector(state => state.cart)
-    // const dispatch = useDispatch();
 
-
-    // function renderPrice() {
-    //     if (loading) {
-    //         return "Loading"
-    //     } else if (tour.price.sale_amount) {
-    //         return `${tour.price.sale_amount} from ${tour.price.amount}`
-    //     }
-
-    //     return `${tour.price.amount}`;
-    // }
+    if (loading) {
+        return (
+            <p>Loading</p>
+        )
+    }
 
     return (
         <div>
-            {/* {loading ? "Loading" :
-                <CardImg top width="100%" src={tour.image} alt="Card image cap" />
-            } */}
-
-            {loading ? <p>Loading</p> :
-                <p>{tour.name}</p>
-            }
 
 
 
+            <h1>{tour.name}</h1>
+            {tour.score.toFixed(1)} ||
+            {tour.price.currency} {tour.price.amount}
+            <Image src={tour.images[0].source_url} />
+            {tour.vendor}
         </div>
     )
 }

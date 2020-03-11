@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getMalibourneTours } from '../../services/api/tours';
-
+import { Grid, Image } from 'semantic-ui-react'
 import TourItem from './../TourItem/TourItem';
 
 function ToursView() {
@@ -20,15 +20,15 @@ function ToursView() {
     function renderMalbourneTours() {
         if (isLoading) {
             return [...Array(9)].map((x, i) =>
-                // <Col key={i} md="4">
-                <TourItem loading />
-                // </Col>
+                <Grid.Column>
+                    <TourItem loading />
+                </Grid.Column>
             )
         } else if (toursList.length) {
             return toursList.map(tour =>
-                // <Col key={tour.id} md="4">
-                <TourItem tour={tour} />
-                // </Col>
+                <Grid.Column>
+                    <TourItem tour={tour} />
+                </Grid.Column>
             )
         }
 
@@ -39,11 +39,15 @@ function ToursView() {
     return (
         <div>
             <aside>
-
+                Filter
             </aside>
 
             <section>
-                {renderMalbourneTours()}
+                <Grid stackable columns={3} divided>
+                    <Grid.Row>
+                        {renderMalbourneTours()}
+                    </Grid.Row>
+                </Grid>
             </section>
         </div>
     )

@@ -1,7 +1,7 @@
 import { RequestError } from './RequestError';
 import getResponseContent from './getResponseContent';
 
-import config from './config';
+import config from '../config';
 
 const request = async function (endpoint, method, data) {
     const response = await fetch(`${config.API_URL}/${config.API_VERSION}/${endpoint}`, {

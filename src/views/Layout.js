@@ -5,19 +5,20 @@ import 'semantic-ui-css/semantic.min.css';
 
 import { MainHeader, Footer } from './../components/index';
 import Routes from './Routes';
+import { AuthProvider } from '../context/ContextAuth';
 
 
 function App() {
     return (
-        <div>
-            <Router>
-                <MainHeader />
+        // <AuthProvider>
+        <Router>
+            <MainHeader />
 
-                <Routes />
+            <Routes />
 
-                <Footer />
-            </Router>
-        </div>
+            <Footer />
+        </Router>
+        // </AuthProvider>
     );
 }
 

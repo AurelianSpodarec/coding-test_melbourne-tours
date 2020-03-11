@@ -1,4 +1,4 @@
-import request from './../request';
+import request from '../request/request';
 
 const getMalibourneTours = async () => {
     const res = await request(`tour.json?location_ids=Melbourne`, 'GET')

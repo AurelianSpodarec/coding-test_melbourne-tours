@@ -10,15 +10,15 @@ import { AuthProvider } from '../context/ContextAuth';
 
 function App() {
     return (
-        // <AuthProvider>
-        <Router>
-            <MainHeader />
+        <AuthProvider>
+            <Router>
+                <MainHeader />
 
-            <Routes />
+                <Routes />
 
-            <Footer />
-        </Router>
-        // </AuthProvider>
+                <Footer />
+            </Router>
+        </AuthProvider>
     );
 }
 

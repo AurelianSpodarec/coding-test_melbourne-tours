@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HomeVideo from './sections/HomeVideo/HomeVideo';
 import { Icon, Input, Button, Form } from 'semantic-ui-react'
 import { useForm } from '../../hooks';
-import { signUp } from '../../services/api/auth';
+import { signUp, signIn } from '../../services/api/auth';
 
 const INITIAL_STATE_REGISTER = {
     email: "",
@@ -17,12 +17,15 @@ function Home() {
         await signUp({ email: values.email, password: values.password })
     }
 
+    async function onSignIn() {
+        await signIn({ email: "admin@gmail.com", password: "admin123" })
+    }
 
     return (
         <div>
 
             <HomeVideo />
-
+            <Button onClick={onSignIn}>Sign in</Button>
             <div>
                 <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
                     <h1>Sign up</h1>

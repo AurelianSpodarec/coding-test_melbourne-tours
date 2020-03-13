@@ -40,6 +40,7 @@ const INITIAL_STATE_SEARCH = {
     value: ''
 }
 
+//TODO: Build a custom search... Semantic UI has Zero customisation. 
 const SearchBar = () => {
     const [state, setState] = useState(INITIAL_STATE_SEARCH)
 
@@ -56,17 +57,17 @@ const SearchBar = () => {
     }
 
     return (
-
-        <Search
-            fluid
-            loading={state.isLoading}
-            onResultSelect={handleResultSelect}
-            onSearchChange={handleSearchChange}
-            results={state.results}
-            value={state.value}
-            width="100%"
-        />
-
+        <div>
+            <Search
+                fluid
+                loading={state.isLoading}
+                onResultSelect={handleResultSelect}
+                onSearchChange={handleSearchChange}
+                results={state.results}
+                value={state.value}
+                width="100%"
+            />
+        </div>
     );
 }
 

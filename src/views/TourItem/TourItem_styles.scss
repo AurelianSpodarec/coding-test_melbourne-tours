@@ -1,0 +1,22 @@
+.tour-item {
+    &__image-wrap {
+        position: relative;
+        height: 135px;
+        max-height: 135px;
+    }
+
+    &__image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__heart {
+        cursor: pointer;
+        color: white;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 10;
+    }
+}

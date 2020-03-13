@@ -1,5 +1,8 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react'
+import { Card, Grid, Image, Icon } from 'semantic-ui-react'
+
+import './TourItem_styles.scss';
+
 const TourItem = ({ tour, loading }) => {
 
     if (loading) {
@@ -9,16 +12,28 @@ const TourItem = ({ tour, loading }) => {
     }
 
     return (
-        <div>
+        <Card>
 
+            <div className="tour-item__image-wrap">
+                <Icon className="tour-item__heart" name="heart outline" />
+                <Image className="tour-item__image" src={tour.images[0].source_url} />
+            </div>
 
+            <Card.Content>
+                <div>
+                    <Card.Meta>{tour.vendor}</Card.Meta>
+                    <Card.Header>{tour.name}</Card.Header>
+                </div>
 
-            <h1>{tour.name}</h1>
-            {tour.score.toFixed(1)} ||
-            {tour.price.currency} {tour.price.amount}
-            <Image src={tour.images[0].source_url} />
-            {tour.vendor}
-        </div>
+                <div>
+                    {tour.score.toFixed(2)}
+                    <Icon icon="star" />
+                </div>
+                A$ {tour.price.amount}
+            </Card.Content>
+
+            {/* {tour.price.currency}  */}
+        </Card>
     )
 }
 

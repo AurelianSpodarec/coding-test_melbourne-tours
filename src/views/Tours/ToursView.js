@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getMalibourneTours } from '../../services/api/tours';
 import { Grid, Image, Container } from 'semantic-ui-react'
 import TourItem from './../TourItem/TourItem';
+import { Banner } from '../../components';
+
+import './ToursView_styles.scss';
 
 function ToursView() {
     const [toursList, setToursList] = useState([])
@@ -38,16 +41,20 @@ function ToursView() {
 
     return (
         <div>
+            <Banner
+                title="Tours"
+                image="/assets/images/banners/tours-banner.jpg"
+            />
             <Container>
                 <Grid>
                     <Grid.Column width={5}>
                         <aside>
                             Filter
-                    </aside>
+                        </aside>
                     </Grid.Column>
 
                     <Grid.Column width={11}>
-                        <Grid columns='two' divided>
+                        <Grid columns='three' divided>
                             <Grid.Row>
                                 {renderMalbourneTours()}
                             </Grid.Row>

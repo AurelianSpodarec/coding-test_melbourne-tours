@@ -1,21 +1,13 @@
 import React from 'react';
 import NavBar from './sub-components/NavBar/NavBar';
-import Search from './sub-components/Search/Search';
+import SearchBar from './sub-components/Search/Search';
 
 import {
     Button,
     Container,
-    Divider,
-    Grid,
-    Header,
-    Icon,
     Image,
     List,
     Menu,
-    Responsive,
-    Segment,
-    Sidebar,
-    Visibility,
 } from 'semantic-ui-react'
 
 function MainHeader() {
@@ -27,7 +19,7 @@ function MainHeader() {
                     Melbourne Tours
                 </Menu.Item>
 
-                <Search />
+                <SearchBar />
 
                 <NavBar />
 

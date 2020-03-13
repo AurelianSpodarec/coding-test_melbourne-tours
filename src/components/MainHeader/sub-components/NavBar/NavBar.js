@@ -8,42 +8,21 @@ import {
     Visibility,
     Dropdown,
     Image,
-    Icon
+    Icon,
+    Modal
 } from 'semantic-ui-react'
 import { AuthContext } from './../../../../context/ContextAuth';
-
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { signOut } from '../../../../services/api/auth';
+import menuOptions from './menuOptions';
 
-//TODO: Refactor
-const options = [
-    {
-        key: 'user',
-        text: (
-            <div>
-                <Icon icon="user" />
-                <Link to="/my-profile">My Profile</Link>
-            </div>
-        )
-    },
-    { key: 'settings', text: 'Settings', icon: 'settings' },
-    {
-        key: 'sign-out',
-        text: (
-            <div>
-                <Icon icon="sign out" />
-                <p onClick={signOut}>Logout</p>
-            </div>
-        )
-    },
-]
+import AuthModal from './../AuthModal/AuthModal';
 
 const NavBar = (props) => {
+    const [openAuthModal, setOpenAuthModal] = useState(false);
 
     const { authData } = useContext(AuthContext);
-    console.log("Navbar", authData)
 
-    const trigger = (
+    const dropdownTrigger = (
         <span>
             {authData.user && authData.user.profile ?
                 <Image avatar src={authData.user.profile} /> :
@@ -52,6 +31,14 @@ const NavBar = (props) => {
         </span>
     )
 
+    function onOpenModal() {
+        setOpenAuthModal(true)
+    }
+
+    function onCloseModal() {
+        setOpenAuthModal(false)
+    }
+
     return (
         <>
             <Menu.Menu position='right'>
@@ -59,22 +46,23 @@ const NavBar = (props) => {
                 <Menu.Item as='a'><Link to="/tours">Tours</Link></Menu.Item>
 
                 {authData.isAuthenticated ?
-                    <>
-                        <Dropdown
-                            trigger={trigger}
-                            options={options}
-                            pointing='top left'
-                            icon={null}
-                        />
-                    </>
+                    <Dropdown
+                        trigger={dropdownTrigger}
+                        options={menuOptions}
+                        pointing='top left'
+                        icon={null}
+                    />
                     :
                     <Menu.Item position='right'>
                         <Button as='a' color="red" inverted>Log in</Button>
-                        <Button as='a' color="red" style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+                        <Button as='a' color="red" onClick={onOpenModal
+                        } style={{ marginLeft: '0.5em' }}>Sign Up</Button>
                     </Menu.Item>
                 }
 
             </Menu.Menu>
+
+            <AuthModal open={openAuthModal} close={onCloseModal} />
         </>
     );
 }

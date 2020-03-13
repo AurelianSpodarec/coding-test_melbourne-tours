@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getMalibourneTours } from '../../services/api/tours';
-import { Grid, Image } from 'semantic-ui-react'
+import { Grid, Image, Container } from 'semantic-ui-react'
 import TourItem from './../TourItem/TourItem';
 
 function ToursView() {
@@ -38,18 +38,24 @@ function ToursView() {
 
     return (
         <div>
-            <aside>
-                Filter
-            </aside>
+            <Container>
+                <Grid>
+                    <Grid.Column width={5}>
+                        <aside>
+                            Filter
+                    </aside>
+                    </Grid.Column>
 
-            <section>
-                <Grid stackable columns={3} divided>
-                    <Grid.Row>
-                        {renderMalbourneTours()}
-                    </Grid.Row>
+                    <Grid.Column width={11}>
+                        <Grid columns='two' divided>
+                            <Grid.Row>
+                                {renderMalbourneTours()}
+                            </Grid.Row>
+                        </Grid>
+                    </Grid.Column>
                 </Grid>
-            </section>
-        </div>
+            </Container >
+        </div >
     )
 }
 

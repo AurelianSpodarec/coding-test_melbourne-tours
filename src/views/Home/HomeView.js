@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import HomeVideo from './sections/HomeVideo/HomeVideo';
-import { Icon, Input, Button, Form } from 'semantic-ui-react'
+import { Icon, Input, Button, Form, Image, Container } from 'semantic-ui-react'
 import { useForm } from '../../hooks';
 import { signUp, signIn } from '../../services/api/auth';
 
@@ -25,7 +25,15 @@ function Home() {
         <div>
 
             <HomeVideo />
-            <Button onClick={onSignIn}>Sign in</Button>
+
+            <div>
+                <Container>
+                    <Image src="https://i.pinimg.com/564x/83/d5/7e/83d57ecd14e792482c8e13b8ff85a013.jpg" />
+                </Container>
+
+            </div>
+
+            {/* <Button onClick={onSignIn}>Sign in</Button>
             <div>
                 <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
                     <h1>Sign up</h1>
@@ -59,7 +67,7 @@ function Home() {
                     <h1>Log in</h1>
 
                 </form>
-            </div>
+            </div> */}
 
         </div>
     )

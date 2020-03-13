@@ -8,7 +8,7 @@ function HomeVideo() {
 
 
             <div className="landing-video__wrap">
-                <img className="landing-video__top-frame" src="https://wildrenfrew.com/wp-content/themes/2019-wildrenfrew/assets/images/textures/texture-top.png" />
+                {/* <img className="landing-video__top-frame" src="https://wildrenfrew.com/wp-content/themes/2019-wildrenfrew/assets/images/textures/texture-top.png" /> */}
 
                 <div className="landing-video__block"></div>
                 <iframe className="landing-video__video" src="https://player.vimeo.com/video/396573698?autoplay=1&loop=1&autopause=0&muted=1" width="100%" height="500px" frameborder="0" ></iframe>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import NavBar from './sub-components/NavBar/NavBar';
 import SearchBar from './sub-components/Search/Search';
 
@@ -13,8 +13,27 @@ import {
 } from 'semantic-ui-react'
 
 function MainHeader() {
+    const [isSticky, setIsSticky] = useState(false);
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', () => handleScroll);
+        }
+    }, []);
+
+    const handleScroll = () => {
+
+        // if (ref && ref.current && ref.current.getBoundingClientRect()) {
+        //     setIsSticky(ref.current.getBoundingClientRect().top <= top);
+        // }
+    };
+
+    // console.log("MMMMMMMMM", menuRef.getBoundingClientRect(), isSticky)
+
     return (
-        <Menu>
+        <Menu ref={menuRef} className={` ${isSticky && 'main-header--sticky'}`}>
             <Container>
                 <Link to="/">
                     <Menu.Item as='a' header>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Image, Icon } from 'semantic-ui-react'
+import { Card, Grid, Image, Icon, Placeholder } from 'semantic-ui-react'
 
 import './TourItem_styles.scss';
 
@@ -7,7 +7,17 @@ const TourItem = ({ tour, loading }) => {
 
     if (loading) {
         return (
-            <p>Loading</p>
+            <Placeholder fluid>
+                <Placeholder.Header image>
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                </Placeholder.Header>
+                <Placeholder.Paragraph>
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                </Placeholder.Paragraph>
+            </Placeholder>
         )
     }
 

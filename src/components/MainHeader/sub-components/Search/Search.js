@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Grid, Header, Segment } from 'semantic-ui-react'
+import { Search, Grid, Header, Segment, Input } from 'semantic-ui-react'
+import './Search_styles.scss';
 
 const fakeData = [
     {
@@ -37,7 +38,8 @@ const fakeData = [
 const INITIAL_STATE_SEARCH = {
     isLoading: false,
     results: [],
-    value: ''
+    value: '',
+    isOpen: false,
 }
 
 //TODO: Build a custom search... Semantic UI has Zero customisation. 
@@ -56,17 +58,33 @@ const SearchBar = () => {
 
     }
 
+    function populateResults() {
+        if (state.results.length === 0) {
+            return "No tours found.";
+        }
+        return state.results;
+    }
+
+    useEffect(() => {
+
+    }, [])
+
     return (
-        <div>
-            <Search
-                fluid
-                loading={state.isLoading}
-                onResultSelect={handleResultSelect}
-                onSearchChange={handleSearchChange}
-                results={state.results}
-                value={state.value}
-                width="100%"
+        <div className="search-bar">
+
+            <Input
+                className="search-bar__input"
+                loading={state.isLoading ? true : false}
+                icon='search'
+                placeholder='Search...'
             />
+            <div className={`search-bar__results ${state.isOpen ? 'is-open' : ""}`}>
+                {/* {populateResults()} */}
+                <div>
+                    <h1>Hello</h1>
+                </div>
+
+            </div>
         </div>
     );
 }

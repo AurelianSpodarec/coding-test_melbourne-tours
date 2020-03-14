@@ -10,10 +10,15 @@ import {
     Image,
     List,
     Menu,
+    Responsive,
+    Segment
 } from 'semantic-ui-react'
+
+import './MainHeader_styles.scss';
 
 function MainHeader() {
     const [isSticky, setIsSticky] = useState(false);
+    const [isMenuOpen, isSetMenuOpen] = useState(false)
     const menuRef = useRef(null);
 
     useEffect(() => {
@@ -25,29 +30,48 @@ function MainHeader() {
 
     const handleScroll = () => {
 
-        // if (ref && ref.current && ref.current.getBoundingClientRect()) {
-        //     setIsSticky(ref.current.getBoundingClientRect().top <= top);
-        // }
     };
 
-    // console.log("MMMMMMMMM", menuRef.getBoundingClientRect(), isSticky)
+    function toggleSidebar() {
+
+    }
 
     return (
-        <Menu ref={menuRef} className={` ${isSticky && 'main-header--sticky'}`}>
-            <Container>
-                <Link to="/">
-                    <Menu.Item as='a' header>
-                        <Image size='mini' src='/assets/images/logo/logo-neutral.png' style={{ marginRight: '1.5em' }} />
-                        Melbourne Tours
-                </Menu.Item>
-                </Link>
+        <>
 
-                <SearchBar />
+            <header className="main-header">
 
-                <NavBar />
+                <Container>
+                    <div className="main-header__inner">
+                        <div className="main-header__col main-header__logo">
+                            <Link to="/" style={{ 'display': 'flex', 'align-items': 'center' }}>
+                                <Image size='mini' src='/assets/images/logo/logo-neutral.png' style={{ marginRight: '1.5em' }} />
+                                Melbourne Tours
+                            </Link>
+                        </div>
 
-            </Container>
-        </Menu>
+                        <div className="main-header__col main-header__search-bar">
+                            <SearchBar />
+                        </div>
+
+                        <div className="main-header__col main-header__navbar">
+                            <NavBar open={isMenuOpen} />
+                        </div>
+
+                        <div onClick={toggleSidebar}> Toggle sidebar
+                            </div>
+
+
+                        {/* <div className="main-header__mobile-menu">
+                        <div>Picture</div>
+                        <h3>Aurelian spodarec</h3>
+                    </div> */}
+                    </div>
+                </Container>
+
+
+            </header>
+        </>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
     Button,
     Menu,
@@ -17,10 +17,17 @@ import menuOptions from './menuOptions';
 
 import AuthModal from './../AuthModal/AuthModal';
 
+import './NavBar_Styles.scss';
+
 const NavBar = (props) => {
     const [openAuthModal, setOpenAuthModal] = useState(false);
-
+    const [isMobile, setIsMobile] = useState(true);
+    const [isOpen, setIsOpen] = useState(false)
     const { authData } = useContext(AuthContext);
+
+    useEffect(() => {
+
+    }, [])
 
     const dropdownTrigger = (
         <span>
@@ -39,30 +46,57 @@ const NavBar = (props) => {
         setOpenAuthModal(false)
     }
 
+    function CustomMenu() {
+        if (!isMobile) {
+            return (
+                <li>MENU</li>
+            )
+        }
+        return (
+            <div>
+                AVATAR SLIDe
+            </div>
+        )
+    }
+    console.log("DDDD", Responsive.onlyMobile.maxWidth)
+
     return (
         <>
-            <Menu.Menu position='right'>
-                <Menu.Item as='a' active><Link to="/">Home</Link></Menu.Item>
-                <Menu.Item as='a'><Link to="/tours">Tours</Link></Menu.Item>
+            <Menu.Menu className={`navbar ${isOpen ? 'is-open' : ""}`}>
 
-                {authData.isAuthenticated ?
-                    <Dropdown
-                        trigger={dropdownTrigger}
-                        options={menuOptions}
-                        pointing='top left'
-                        icon={null}
-                    />
-                    :
-                    <Menu.Item position='right'>
-                        <Button as='a' color="red" inverted>Log in</Button>
-                        <Button as='a' color="red" onClick={onOpenModal
-                        } style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-                    </Menu.Item>
-                }
+
+                {/* <div className={`navbar__mobile`}>
+                    Mobile
+                </div> */}
+
+                <div className="navbar__mobile">
+
+                </div>
+
+                <div className="navbar__desktop">
+                    <ul className="navbar__ul">
+                        <li active><Link to="/">Home</Link></li>
+                        <li><Link to="/tours">Tours</Link></li>
+                        {authData.isAuthenticated ?
+                            <Dropdown
+                                trigger={dropdownTrigger}
+                                options={menuOptions}
+                                pointing='top left'
+                                icon={null}
+                            />
+                            :
+                            <li>
+                                <Button color="red" inverted>Log in</Button>
+                                <Button color="red" onClick={onOpenModal
+                                } style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+                            </li>
+                        }
+                    </ul>
+                </div>
 
             </Menu.Menu>
 
-            <AuthModal open={openAuthModal} close={onCloseModal} />
+            {/* <AuthModal open={openAuthModal} close={onCloseModal} /> */}
         </>
     );
 }

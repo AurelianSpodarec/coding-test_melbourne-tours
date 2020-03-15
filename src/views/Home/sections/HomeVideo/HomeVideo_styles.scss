@@ -48,17 +48,13 @@
 
     &__caption-title {
         font-weight: 800;
-        font-size: 4em;
+        font-size: 1.5em;
         color: white;
+        @media (min-width: 768px) {
+            font-size: 4em;
+        }
+
     }
 
 
-}
-//TODO: Refactor
-body {
-    font-family: 'Nunito';
-}
-
-h1,h2,h3,h4,h5,h6,p {
-    font-family: 'Nunito';
 }

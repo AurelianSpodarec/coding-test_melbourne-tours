@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import NavBar from './sub-components/NavBar/NavBar';
 import SearchBar from './sub-components/Search/Search';
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
 
 import {
     Button,
@@ -20,6 +20,7 @@ function MainHeader() {
     const [isSticky, setIsSticky] = useState(false);
     const [isMenuOpen, isSetMenuOpen] = useState(false)
     const menuRef = useRef(null);
+    let location = useLocation();
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -39,7 +40,7 @@ function MainHeader() {
     return (
         <>
 
-            <header className="main-header">
+            <header className={`main-header ${location.pathname == '/' ? "naked" : ""}`}>
 
                 <Container>
                     <div className="main-header__inner">
@@ -58,14 +59,6 @@ function MainHeader() {
                             <NavBar open={isMenuOpen} />
                         </div>
 
-                        {/* <div onClick={toggleSidebar}> Toggle sidebar
-                            </div> */}
-
-
-                        {/* <div className="main-header__mobile-menu">
-                        <div>Picture</div>
-                        <h3>Aurelian spodarec</h3>
-                    </div> */}
                     </div>
                 </Container>
 

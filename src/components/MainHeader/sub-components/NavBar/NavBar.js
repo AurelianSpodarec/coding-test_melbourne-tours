@@ -68,21 +68,15 @@ const NavBar = (props) => {
         <>
             <Menu.Menu className={`navbar ${isOpen ? 'is-open' : ""}`}>
 
-
-                {/* <div className={`navbar__mobile`}>
-                    Mobile
-                </div> */}
-
                 <div onClick={toggleMenu} className="navbar__bars">
                     <Icon name="bars" />
                 </div>
 
-
-
                 <div className="navbar__desktop">
                     <ul className="navbar__ul">
-                        <li active><Link to="/">Home</Link></li>
-                        <li><Link to="/tours">Tours</Link></li>
+                        <li className="navbar__li" active><Link className="navbar__link" to="/">Home</Link></li>
+                        <li className="navbar__li"><Link className="navbar__link" to="/tours">Tours</Link></li>
+                        <li className="navbar__li"><Link className="navbar__link" to="/About">About</Link></li>
                         {authData.isAuthenticated ?
                             <Dropdown
                                 trigger={dropdownTrigger}
@@ -91,7 +85,7 @@ const NavBar = (props) => {
                                 icon={null}
                             />
                             :
-                            <li>
+                            <li className="navbar__li">
                                 <Button color="red" inverted>Log in</Button>
                                 <Button color="red" onClick={onOpenModal
                                 } style={{ marginLeft: '0.5em' }}>Sign Up</Button>
@@ -105,6 +99,29 @@ const NavBar = (props) => {
             <div className={`navbar__mobile ${isOpen ? 'is-active' : ''}`}>
                 <div onClick={toggleMenu}>
                     x
+                </div>
+                <div>
+                    <ul>
+                        {authData.isAuthenticated ?
+
+                            <>
+                                authData && authData.photo ? "Avatar" : <Icon name="user circle" />
+                                <span>{authData && authData.email}</span>
+                            </>
+                            :
+
+                            <>
+
+                                <li active><Link to="/">Log In</Link></li>
+                                <li active><Link to="/">Sign Up</Link></li>
+
+                            </>
+                        }
+
+
+                        <li active><Link to="/">Home</Link></li>
+                        <li><Link to="/tours">Tours</Link></li>
+                    </ul>
                 </div>
             </div>
             {/* <AuthModal open={openAuthModal} close={onCloseModal} /> */}

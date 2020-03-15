@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { getMalibourneTours } from '../../services/api/tours';
 import { Banner, TourItem } from '../../components';
 
@@ -9,6 +11,8 @@ import './ToursView_styles.scss';
 function ToursView() {
     const [toursList, setToursList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const tours = useSelector(state => state)
+    console.log("Tours view Redux:", tours)
 
     useEffect(() => {
         const fetchTours = async () => {

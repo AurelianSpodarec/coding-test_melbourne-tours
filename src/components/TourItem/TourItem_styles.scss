@@ -45,14 +45,15 @@
         font-size: 12px;
     }
 
-    &__rating-score {
-        color: #000;
-    }
-
     &__rating-score,
     &__rating-icon {
         color: gold;
         display: inline-block;
+    }
+    
+    &__rating-score {
+        font-size: 10px;
+        color: black;
     }
 
     &__price-wrap {

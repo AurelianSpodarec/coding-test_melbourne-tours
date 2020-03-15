@@ -26,12 +26,17 @@ const TourItem = ({ tour, loading }) => {
         <Card className="tour-item">
 
             <div className="tour-item__image-wrap">
-                <Icon className="tour-item__heart" name="heart outline" />
-                <Image className="tour-item__image" src={tour.images[0].source_url} />
-            </div>
 
-            {/* TODO: Have the link to be name. Replace spaces with a dash(-) */}
-            <Link to={`/tours/${tour.id}`}>
+
+                <Icon className="tour-item__heart" name="heart outline" />
+
+                <Link to={`/tours/${tour.id}`}>
+                    <Image className="tour-item__image" src={tour.images[0].source_url} />
+                </Link>
+            </div>
+            <Link className="tour-item__content-link" to={`/tours/${tour.id}`}>
+
+                {/* TODO: Have the link to be name. Replace spaces with a dash(-) */}
                 <Card.Content className="tour-item__content">
                     <div>
                         <Card.Meta>{tour.vendor}</Card.Meta>
@@ -48,9 +53,9 @@ const TourItem = ({ tour, loading }) => {
                         </div>
                     </div>
                 </Card.Content>
-            </Link>
 
-            {/* {tour.price.currency}  */}
+                {/* {tour.price.currency}  */}
+            </Link>
         </Card>
     )
 }

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import HomeVideo from './sections/HomeVideo/HomeVideo';
+import React, { useState, useEffect } from 'react';
+
+import { HomeVideo, HomeTopRatedTours } from './sections';
+
 import { Icon, Input, Button, Form, Image, Container, Grid } from 'semantic-ui-react'
 import { useForm } from '../../hooks';
 import { signUp, signIn } from '../../services/api/auth';
-import { TourItem } from '../../components';
 
 const INITIAL_STATE_REGISTER = {
     email: "",
@@ -27,15 +28,7 @@ function Home() {
 
             <HomeVideo />
 
-            <div>
-                <Grid>
-                    <Grid.Row columns={3}>
-                        <Grid.Column>
-                            {/* <TourItem /> */}
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </div>
+            <HomeTopRatedTours />
 
 
 
@@ -51,20 +44,18 @@ function Home() {
                 </Grid.Row>
             </Grid>
 
-            <div>
-                <Grid>
-                    <Grid.Row columns={2}>
+            <Grid>
+                <Grid.Row columns={2}>
 
-                        <Grid.Column>
-                            <h2>Enjoy awesome nightlife!</h2>
-                            <p>lorem</p>
-                        </Grid.Column>
-                        <Grid.Column>
-                            <Image src="https://2.bp.blogspot.com/-sdOoCckeJ0A/UzPJUPuqoCI/AAAAAAAAFXQ/zY3zJjuBa4k/s1600/IMG_2438.JPG" />
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </div>
+                    <Grid.Column>
+                        <h2>Enjoy awesome nightlife!</h2>
+                        <p>lorem</p>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Image src="https://2.bp.blogspot.com/-sdOoCckeJ0A/UzPJUPuqoCI/AAAAAAAAFXQ/zY3zJjuBa4k/s1600/IMG_2438.JPG" />
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
 
             <Grid>
                 <Grid.Row columns={2}>

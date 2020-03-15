@@ -40,8 +40,8 @@ function MainHeader() {
     return (
         <>
 
-            <header className={`main-header ${location.pathname == '/' ? "naked" : ""}`}>
-
+            {/* <header className={`main-header ${location.pathname == '/' ? "naked" : ""}`}> */}
+            <header className={`main-header naked`}>
                 <Container>
                     <div className="main-header__inner">
                         <div className="main-header__col main-header__logo">

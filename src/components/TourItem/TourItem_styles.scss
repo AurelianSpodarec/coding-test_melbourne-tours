@@ -1,4 +1,22 @@
 .tour-item {
+    height: 270px;
+    cursor: pointer;
+    margin-bottom: 32px;
+    transition: .15s ease-in-out;
+
+    &:hover {
+        // zoom: 1.1;
+    }
+
+    &__title {
+        font-weight: bold;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+    }
+
     &__image-wrap {
         position: relative;
         height: 135px;
@@ -18,5 +36,33 @@
         right: 10px;
         top: 10px;
         z-index: 10;
+    }
+
+    &__rating-wrap {
+        border: 2px solid gold;
+        border-radius: 20px;
+        padding: 0px 7px;
+        font-size: 12px;
+    }
+
+    &__rating-score {
+        color: #000;
+    }
+
+    &__rating-score,
+    &__rating-icon {
+        color: gold;
+        display: inline-block;
+    }
+
+    &__price-wrap {
+        font-weight: bold;
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: auto;
     }
 }

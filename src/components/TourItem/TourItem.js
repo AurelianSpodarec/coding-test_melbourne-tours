@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, Grid, Image, Icon, Placeholder } from 'semantic-ui-react'
 
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 import './TourItem_styles.scss';
 
 const TourItem = ({ tour, loading }) => {
@@ -9,8 +11,7 @@ const TourItem = ({ tour, loading }) => {
         return (
             <Placeholder fluid>
                 <Placeholder.Header image>
-                    <Placeholder.Line />
-                    <Placeholder.Line />
+
                 </Placeholder.Header>
                 <Placeholder.Paragraph>
                     <Placeholder.Line />
@@ -22,25 +23,32 @@ const TourItem = ({ tour, loading }) => {
     }
 
     return (
-        <Card>
+        <Card className="tour-item">
 
             <div className="tour-item__image-wrap">
                 <Icon className="tour-item__heart" name="heart outline" />
                 <Image className="tour-item__image" src={tour.images[0].source_url} />
             </div>
 
-            <Card.Content>
-                <div>
-                    <Card.Meta>{tour.vendor}</Card.Meta>
-                    <Card.Header>{tour.name}</Card.Header>
-                </div>
+            {/* TODO: Have the link to be name. Replace spaces with a dash(-) */}
+            <Link to={`/tours/${tour.id}`}>
+                <Card.Content className="tour-item__content">
+                    <div>
+                        <Card.Meta>{tour.vendor}</Card.Meta>
+                        <Card.Header className="tour-item__title">{tour.name}</Card.Header>
+                    </div>
 
-                <div>
-                    {tour.score.toFixed(2)}
-                    <Icon icon="star" />
-                </div>
-                A$ {tour.price.amount}
-            </Card.Content>
+                    <div className="tour-item__footer">
+                        <div className="tour-item__rating-wrap">
+                            <Icon className="tour-item__rating-icon" name="star" />
+                            <p className="tour-item__rating-score">{tour.score.toFixed(2)}</p>
+                        </div>
+                        <div className="tour-item__price-wrap">
+                            <p>A$ {tour.price.amount}</p>
+                        </div>
+                    </div>
+                </Card.Content>
+            </Link>
 
             {/* {tour.price.currency}  */}
         </Card>

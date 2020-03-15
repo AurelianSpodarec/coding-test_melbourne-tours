@@ -19,7 +19,6 @@ function ToursView() {
         fetchTours();
     }, [])
 
-
     function renderMalbourneTours() {
         if (isLoading) {
             return [...Array(9)].map((x, i) =>
@@ -38,7 +37,6 @@ function ToursView() {
         return "Not tours found. Please comeback later. :-("
     }
 
-
     return (
         <div>
             <Banner
@@ -55,8 +53,10 @@ function ToursView() {
 
                     <Grid.Column width={11}>
 
-                        <Grid>
+                        <Grid columns="one">
                             <Grid.Row>
+
+                                <Input placeholder="Search by name" />
 
                                 <Dropdown text='Price'>
                                     <Dropdown.Menu>

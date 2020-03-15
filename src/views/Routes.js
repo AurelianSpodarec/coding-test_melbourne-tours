@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomeView from './Home/HomeView';
 import MyProfileView from './MyProfile/MyProfileView';
 import ToursView from './Tours/ToursView';
+import ToursSingle from './Tours/ToursSingle/ToursSingle';
 import NotFound from './NotFound/NotFound'
 
 const Routing = [
@@ -14,6 +15,11 @@ const Routing = [
     {
         path: "/tours",
         component: ToursView,
+
+    },
+    {
+        path: "/tours/:id",
+        component: ToursSingle,
 
     },
     {

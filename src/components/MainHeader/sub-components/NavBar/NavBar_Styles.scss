@@ -1,4 +1,52 @@
 .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__mobile {
+        display: block;
+        height: 100%;
+        width: 400px;
+        border: 1px solid grey;
+        z-index: 30;
+        background: white;
+        position: fixed;
+        top: 0;
+        border: 100;
+        bottom: 0;
+        width: 240px;
+        right: 0;
+        height: 100vh;
+        transform: translateX(100%);
+        transition: .15s ease-in-out;
+
+        &.is-active {
+            transform: translateX(0);
+        }
+            
+        @media (min-width: 768px) {
+            display: none;
+        }
+
+    }
+
+    &__desktop {
+        display: none;
+
+        @media (min-width: 768px) {
+            display: block;
+        }
+    }
+
+    &__bars {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
 
     &__ul {
         display: flex;

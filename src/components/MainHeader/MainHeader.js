@@ -58,8 +58,8 @@ function MainHeader() {
                             <NavBar open={isMenuOpen} />
                         </div>
 
-                        <div onClick={toggleSidebar}> Toggle sidebar
-                            </div>
+                        {/* <div onClick={toggleSidebar}> Toggle sidebar
+                            </div> */}
 
 
                         {/* <div className="main-header__mobile-menu">

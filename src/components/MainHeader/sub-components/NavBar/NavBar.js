@@ -42,6 +42,10 @@ const NavBar = (props) => {
         setOpenAuthModal(true)
     }
 
+    function toggleMenu() {
+        setIsOpen(!isOpen)
+    }
+
     function onCloseModal() {
         setOpenAuthModal(false)
     }
@@ -69,9 +73,11 @@ const NavBar = (props) => {
                     Mobile
                 </div> */}
 
-                <div className="navbar__mobile">
-
+                <div onClick={toggleMenu} className="navbar__bars">
+                    <Icon name="bars" />
                 </div>
+
+
 
                 <div className="navbar__desktop">
                     <ul className="navbar__ul">
@@ -96,6 +102,11 @@ const NavBar = (props) => {
 
             </Menu.Menu>
 
+            <div className={`navbar__mobile ${isOpen ? 'is-active' : ''}`}>
+                <div onClick={toggleMenu}>
+                    x
+                </div>
+            </div>
             {/* <AuthModal open={openAuthModal} close={onCloseModal} /> */}
         </>
     );

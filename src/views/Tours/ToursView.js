@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getMalibourneTours } from '../../services/api/tours';
-import TourItem from './../TourItem/TourItem';
-import { Banner } from '../../components';
+import { Banner, TourItem } from '../../components';
 
 import { Grid, Image, Dropdown, Container, Input } from 'semantic-ui-react'
 
@@ -58,8 +57,6 @@ function ToursView() {
 
                         <Grid>
                             <Grid.Row>
-
-
 
                                 <Dropdown text='Price'>
                                     <Dropdown.Menu>

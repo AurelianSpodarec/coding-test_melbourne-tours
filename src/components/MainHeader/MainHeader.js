@@ -45,7 +45,7 @@ function MainHeader() {
                 <Container>
                     <div className="main-header__inner">
                         <div className="main-header__col main-header__logo">
-                            <Link to="/" style={{ 'display': 'flex', 'align-items': 'center' }}>
+                            <Link to="/" style={{ 'display': 'flex', 'align-items': 'center', 'font-size': '1.5em', 'font-weight': 'bold', 'color': 'white' }}>
                                 <Image size='mini' src='/assets/images/logo/logo-neutral.png' style={{ marginRight: '1.5em' }} />
                                 Melbourne Tours
                             </Link>

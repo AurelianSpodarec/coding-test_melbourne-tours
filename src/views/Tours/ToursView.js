@@ -67,16 +67,16 @@ function ToursView() {
 
                                 <Dropdown text='Price'>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item text='Default' />
-                                        <Dropdown.Item text='Low to High' />
-                                        <Dropdown.Item text='High to Low' />
+                                        <Dropdown.Item onClick={(e) => toursProvider.changePrice(100)} text='$0-$100' />
+                                        <Dropdown.Item onClick={(e) => toursProvider.changePrice(200)} text='$100-$200' />
+                                        <Dropdown.Item onClick={(e) => toursProvider.changePrice(300)} text='$200+' />
                                     </Dropdown.Menu>
                                 </Dropdown>
 
                                 <Dropdown text='Sort By'>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item text='Price' />
-                                        <Dropdown.Item text='Rating' />
+                                        <Dropdown.Item onClick={() => toursProvider.changeRatingOrder('-score')} text='Rating(High to low)' />
+                                        <Dropdown.Item onClick={() => toursProvider.changeRatingOrder('score')} text='Rating(Low to High)' />
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Grid.Row>

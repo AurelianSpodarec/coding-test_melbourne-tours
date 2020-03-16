@@ -10,7 +10,7 @@ function ToursListProvider({ children }) {
     const [tourFilter, setTourFilter] = useState({
         location_ids: "Melbourne",
         price: "",
-        rating: ""
+        order_by: "-score"
     })
 
     const fetchToursList = async () => {
@@ -33,7 +33,8 @@ function ToursListProvider({ children }) {
     }
 
     function changeRatingOrder(event, newValue) {
-        setTourFilter({ ...tourFilter, rating: event })
+        console.log("rating score", event)
+        setTourFilter({ ...tourFilter, order_by: event })
     }
 
     const onFilter = function () {
@@ -47,7 +48,7 @@ function ToursListProvider({ children }) {
 
     useEffect(() => {
         onFilter()
-    }, [tourFilter.location_ids])
+    }, [tourFilter])
 
     return (
         <ToursListContext.Provider value={{

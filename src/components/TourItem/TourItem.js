@@ -36,7 +36,6 @@ const TourItem = ({ tour, loading }) => {
                 <LikedHeart className="tour-item__heart" />
 
                 <Link to={`/tours/${tour.id}`}>
-
                     {tour.images && <Image className="tour-item__image" src={tour.images[0].source_url} />}
                 </Link>
             </div>

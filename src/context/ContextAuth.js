@@ -5,7 +5,17 @@ import firebase from './../firebase';
 
 export const AuthContext = createContext();
 
+const currentUser = firebase.auth().currentUser;
+// const storageRef = firebase.storage().ref()
 
+// const userProfilePicture = storageRef.child('images')
+
+
+// let file = "d";
+// const uploadTask = storageRef.child('')
+// ref.put(file).then(function(snapshot) {
+//     console.log("Uploaded file")
+// })
 
 export const AuthProvider = ({ children }) => {
 

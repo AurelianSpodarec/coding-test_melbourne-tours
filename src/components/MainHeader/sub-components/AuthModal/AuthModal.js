@@ -10,6 +10,7 @@ import {
 function AuthModal({ open, close }) {
 
 
+
     return (
         <div>
 

@@ -11,30 +11,30 @@ import './ToursView_styles.scss';
 
 
 function ToursView() {
-    const [toursList, setToursList] = useState([])
+    // const [toursList, setToursList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     const toursProvider = useContext(ToursListContext)
     console.log("Tours view context:", toursProvider)
 
-    useEffect(() => {
-        const fetchTours = async () => {
-            const result = await getMalibourneTours();
-            setToursList(result.results)
-            setIsLoading(false)
-        };
-        fetchTours();
-    }, [])
+    // useEffect(() => {
+    //     const fetchTours = async () => {
+    //         const result = await getMalibourneTours();
+    //         setToursList(result.results)
+    //         setIsLoading(false)
+    //     };
+    //     fetchTours();
+    // }, [])
 
     function renderMalbourneTours() {
-        if (isLoading) {
+        if (toursProvider.isLoading) {
             return [...Array(9)].map((x, i) =>
                 <Grid.Column mobile={16} tablet={8} computer={5} padded style={{ 'margin-bottom': '32px' }} key={i}>
                     <TourItem loading />
                 </Grid.Column>
             )
-        } else if (toursList.length) {
-            return toursList.map(tour =>
+        } else if (toursProvider.toursList.length) {
+            return toursProvider.toursList.map(tour =>
                 <Grid.Column mobile={16} tablet={8} computer={5} padded style={{ 'margin-bottom': '32px' }} key={tour.id}>
                     <TourItem tour={tour} />
                 </Grid.Column>
@@ -62,8 +62,8 @@ function ToursView() {
 
                         <Grid columns="one">
                             <Grid.Row>
-
-                                <Input placeholder="Search by name" />
+                                {/* <input name="name" onChange={(e) => toursProvider.changeTitle(e)} value={toursProvider.tourFilter.name} placeholder="Search by name" /> */}
+                                <Input name="name" onChange={(e) => toursProvider.changeTitle(e.target.value)} value={toursProvider.tourFilter.name} placeholder="Search by name" />
 
                                 <Dropdown text='Price'>
                                     <Dropdown.Menu>

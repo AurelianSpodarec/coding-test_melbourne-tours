@@ -36,7 +36,8 @@ const TourItem = ({ tour, loading }) => {
                 <LikedHeart className="tour-item__heart" />
 
                 <Link to={`/tours/${tour.id}`}>
-                    <Image className="tour-item__image" src={tour.images[0].source_url} />
+
+                    {tour.images && <Image className="tour-item__image" src={tour.images[0].source_url} />}
                 </Link>
             </div>
             <Link className="tour-item__content-link" to={`/tours/${tour.id}`}>
@@ -50,10 +51,10 @@ const TourItem = ({ tour, loading }) => {
                     <div className="tour-item__footer">
                         <div className="tour-item__rating-wrap">
                             <Icon className="tour-item__rating-icon" name="star" />
-                            <p className="tour-item__rating-score">{tour.score.toFixed(2)}</p>
+                            <p className="tour-item__rating-score">{tour.score && tour.score.toFixed(2)}</p>
                         </div>
                         <div className="tour-item__price-wrap">
-                            <p>A$ {tour.price.amount}</p>
+                            <p>A$ {tour.price && tour.price.amount}</p>
                         </div>
                     </div>
                 </Card.Content>

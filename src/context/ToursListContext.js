@@ -8,9 +8,9 @@ function ToursListProvider({ children }) {
     const [toursList, setToursList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [tourFilter, setTourFilter] = useState({
-        name: '',
-        price: '',
-        rating: ''
+        location_ids: "Melbourne",
+        price: "",
+        rating: ""
     })
 
     const fetchToursList = async () => {
@@ -25,39 +25,39 @@ function ToursListProvider({ children }) {
 
     // TODO: Make this into one function
     function changeTitle(event, newValue) {
-        setTourFilter({ ...tourFilter, name: newValue })
+        setTourFilter({ ...tourFilter, location_ids: event })
     }
 
-    function changePrice(event, newValue) {
-        setTourFilter({ ...tourFilter, price: newValue })
+    function changePriceOrder(event, newValue) {
+        setTourFilter({ ...tourFilter, price: event })
     }
 
-    function changeRating(event, newValue) {
-        setTourFilter({ ...tourFilter, rating: newValue })
+    function changeRatingOrder(event, newValue) {
+        setTourFilter({ ...tourFilter, rating: event })
     }
-
 
     const onFilter = function () {
         // console.log("On FIlter clicked", car)
         fetchToursList()
     }
 
-    useEffect(() => {
-        fetchToursList()
-    }, [])
+    // useEffect(() => {
+    //     fetchToursList()
+    // }, [])
 
     useEffect(() => {
         onFilter()
-    }, tourFilter.name)
+    }, [tourFilter.location_ids])
 
     return (
         <ToursListContext.Provider value={{
+            tourFilter,
             fetchToursList,
             toursList,
             isLoading,
             onFilter,
-            changePrice,
-            changeRating,
+            changePriceOrder,
+            changeRatingOrder,
             changeTitle
         }} >
             {children}

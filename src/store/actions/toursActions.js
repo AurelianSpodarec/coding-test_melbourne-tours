@@ -22,6 +22,7 @@ export const fetchToursRequest = (tours) => {
 
 export function setTours(tours) {
     return dispatch => {
+
         dispatch({
             type: "FETCH_TOURS_REQUEST",
             payload: tours

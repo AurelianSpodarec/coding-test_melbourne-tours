@@ -68,6 +68,18 @@
             color: white;
         }
     }
+
+    &__user-name {
+        font-weight: bold;
+        color: white;
+        border-left: 1px solid #fffefe;
+        padding: 0 4px 0 8px;
+    }
+
+    &__user-avatar {
+        font-size: 2em;
+        color: white;
+    }
 }
 
 .navbar-mobile {

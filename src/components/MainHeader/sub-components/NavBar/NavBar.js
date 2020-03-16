@@ -15,7 +15,7 @@ import { AuthContext } from './../../../../context/ContextAuth';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import menuOptions from './menuOptions';
 
-import AuthModal from './../AuthModal/AuthModal';
+import AuthDialog from './../../../AuthDialog/AuthDialog';
 
 import './NavBar_Styles.scss';
 
@@ -30,12 +30,13 @@ const NavBar = (props) => {
     }, [])
 
     const dropdownTrigger = (
-        <span>
-            {authData.user && authData.user.profile ?
-                <Image avatar src={authData.user.profile} /> :
-                <Icon name="user circle" />}
-            {authData.user && authData.user.email}
-        </span>
+        <li>
+            <span className="navbar__user-name">{authData.user && authData.user.email}</span>
+
+            {authData.user && authData.user.profile ? <Image avatar src={authData.user.profile} /> :
+                <Icon className="navbar__user-avatar" size="big" name="user circle" />}
+
+        </li>
     )
 
     function onOpenModal() {
@@ -85,9 +86,8 @@ const NavBar = (props) => {
                             />
                             :
                             <li className="navbar__li">
-                                <Button color="red" inverted>Log in</Button>
-                                <Button color="red" onClick={onOpenModal
-                                } style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+                                <Button color="red" onClick={onOpenModal} inverted>Log in</Button>
+                                <Button color="red" onClick={onOpenModal} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
                             </li>
                         }
                     </ul>
@@ -123,7 +123,7 @@ const NavBar = (props) => {
                     </ul>
                 </div>
             </div>
-            {/* <AuthModal open={openAuthModal} close={onCloseModal} /> */}
+            <AuthDialog open={openAuthModal} close={onCloseModal} />
         </>
     );
 }

@@ -1,0 +1,14 @@
+.liked-heart {
+    &__heart-wrap {
+        color: #e22020;
+        background: rgba(218, 215, 215, 0.32);
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+    
+    &__icon {
+        margin: 0;
+        line-height: 13px;
+    }
+}

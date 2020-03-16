@@ -32,7 +32,7 @@ function ToursView() {
             )
         } else if (toursList.length) {
             return toursList.map(tour =>
-                <Grid.Column key={tour.id}>
+                <Grid.Column mobile={16} tablet={8} computer={4} padded style={{ 'margin-bottom': '32px' }} key={tour.id}>
                     <TourItem tour={tour} />
                 </Grid.Column>
             )
@@ -81,10 +81,10 @@ function ToursView() {
 
                         </Grid>
 
-                        <Grid columns='three' divided>
-                            <Grid.Row>
-                                {renderMalbourneTours()}
-                            </Grid.Row>
+                        <Grid>
+                            {/* <Grid.Row> */}
+                            {renderMalbourneTours()}
+                            {/* </Grid.Row> */}
                         </Grid>
                     </Grid.Column>
                 </Grid>

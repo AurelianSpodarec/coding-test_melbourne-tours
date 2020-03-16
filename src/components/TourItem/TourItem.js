@@ -3,6 +3,8 @@ import { Card, Grid, Image, Icon, Placeholder } from 'semantic-ui-react'
 
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
+import LikedHeart from './../LikeHeart/LikeHeart';
+
 import './TourItem_styles.scss';
 
 const TourItem = ({ tour, loading }) => {
@@ -22,13 +24,16 @@ const TourItem = ({ tour, loading }) => {
         )
     }
 
+    function onLike() {
+        //TODO: Get user. Assign the tour ID to user database 'likedTours';
+    }
+
     return (
         <Card className="tour-item" key={tour.id}>
 
             <div className="tour-item__image-wrap">
 
-
-                <Icon className="tour-item__heart" name="heart outline" />
+                <LikedHeart className="tour-item__heart" />
 
                 <Link to={`/tours/${tour.id}`}>
                     <Image className="tour-item__image" src={tour.images[0].source_url} />
@@ -36,7 +41,6 @@ const TourItem = ({ tour, loading }) => {
             </div>
             <Link className="tour-item__content-link" to={`/tours/${tour.id}`}>
 
-                {/* TODO: Have the link to be name. Replace spaces with a dash(-) */}
                 <Card.Content className="tour-item__content">
                     <div>
                         <Card.Meta>{tour.vendor}</Card.Meta>

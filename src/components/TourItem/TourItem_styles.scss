@@ -10,6 +10,7 @@
 
     &__title {
         font-weight: bold;
+        color: #000;
     }
 
     &__content {
@@ -44,6 +45,17 @@
         right: 10px;
         top: 10px;
         z-index: 10;
+        transition: .15s ease-in-out;
+        padding: 10px;
+
+        height: 30px;
+        width: 30px;
+        align-items: center;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        background: rgba(218, 215, 215, 0.32);
+        border-radius: 50%;
     }
 
     &__rating-wrap {
@@ -66,6 +78,7 @@
 
     &__price-wrap {
         font-weight: bold;
+        color: #000;
     }
 
     &__footer {

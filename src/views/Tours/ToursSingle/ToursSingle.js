@@ -39,41 +39,46 @@ function ToursSingle() {
 
             <Container>
                 <Grid>
-                    <Grid.Row>
 
+                    <Grid.Row>
                         <span>{tour.vendor}</span>
                         <h1>{tour.name}</h1>
-
                     </Grid.Row>
 
-                    <Grid.Row>
-                        {tour.tag_labels.map(tag => {
-                            return <span key={tag}>{tag}</span>
-                        })}
-                    </Grid.Row>
-
-                    <Grid.Row>
-                        <span>{tour.score}</span>
-                        <span>{tour.price.currency} {tour.price.amount}</span>
-                    </Grid.Row>
-
-                    <Grid.Row>
-                        <p>{tour.intro}</p>
-                    </Grid.Row>
-
-                    <Grid.Row>
-                        <h2>Highlights</h2>
-                        <div>
-                            {tour.highlights.map((index, highlight) => {
-                                return (
-                                    <div key={highlight}>
-                                        <span>{index + 1}</span>
-                                        <span>{highlight}</span>
-                                    </div>
-                                )
+                    {tour.tag_labels &&
+                        <Grid.Row>
+                            {tour.tag_labels.map(tag => {
+                                return <span key={tag}>{tag}</span>
                             })}
-                        </div>
+                        </Grid.Row>
+                    }
+
+                    <Grid.Row>
+                        <span>{tour.score && tour.score}</span>
+                        <span>{tour.price.currency && tour.price.currency} {tour.price.amount && tour.price.amount}</span>
                     </Grid.Row>
+
+                    {tour.intro &&
+                        <Grid.Row>
+                            <p>{tour.intro}</p>
+                        </Grid.Row>
+                    }
+
+                    {tour.highlight &&
+                        <Grid.Row>
+                            <h2>Highlights</h2>
+                            <div>
+                                {tour.highlight && tour.highlights.map((index, highlight) => {
+                                    return (
+                                        <div key={highlight}>
+                                            <span>{index + 1}</span>
+                                            <span>{highlight}</span>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </Grid.Row>
+                    }
 
                 </Grid>
             </Container>

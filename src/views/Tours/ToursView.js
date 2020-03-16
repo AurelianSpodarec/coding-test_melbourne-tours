@@ -13,7 +13,7 @@ import './ToursView_styles.scss';
 function ToursView() {
     // const [toursList, setToursList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-
+    const [selectedOrder, setSelectedOrder] = useState("Sort by")
     const toursProvider = useContext(ToursListContext)
     console.log("Tours view context:", toursProvider)
 
@@ -44,6 +44,11 @@ function ToursView() {
         return "Not tours found. Please comeback later. :-("
     }
 
+    function selectedOrderText(data) {
+        toursProvider.changeRatingOrder(data.value)
+        setSelectedOrder(data.text)
+    }
+
     return (
         <div>
             <Banner
@@ -65,18 +70,18 @@ function ToursView() {
                                 {/* <input name="name" onChange={(e) => toursProvider.changeTitle(e)} value={toursProvider.tourFilter.name} placeholder="Search by name" /> */}
                                 <Input name="name" onChange={(e) => toursProvider.changeTitle(e.target.value)} value={toursProvider.tourFilter.name} placeholder="Search by name" />
 
-                                <Dropdown text='Price'>
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item onClick={(e) => toursProvider.changePrice(100)} text='$0-$100' />
-                                        <Dropdown.Item onClick={(e) => toursProvider.changePrice(200)} text='$100-$200' />
-                                        <Dropdown.Item onClick={(e) => toursProvider.changePrice(300)} text='$200+' />
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                <div>
+                                    <p>Price</p>
 
-                                <Dropdown text='Sort By'>
+                                    {/* Min<Input onChange={(e, name) => toursProvider.changePrice(e.target.value, name)} name="min" value={toursProvider.tourFilter.price[0]} /> */}
+                                    {/* Max<Input onChange={(e, name) => toursProvider.changePrice(e.target.value, name)} name="max" value={toursProvider.tourFilter.price[1]} /> */}
+                                </div>
+
+
+                                <Dropdown text={selectedOrder}>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => toursProvider.changeRatingOrder('-score')} text='Rating(High to low)' />
-                                        <Dropdown.Item onClick={() => toursProvider.changeRatingOrder('score')} text='Rating(Low to High)' />
+                                        <Dropdown.Item onClick={() => selectedOrderText({ value: '-score', text: "Rating(High to low)" })} text='Rating(High to low)' />
+                                        <Dropdown.Item onClick={() => selectedOrderText({ value: 'score', text: "Rating(Low to High)" })} text='Rating(Low to High)' />
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Grid.Row>

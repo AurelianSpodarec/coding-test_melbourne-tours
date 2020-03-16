@@ -3,7 +3,7 @@ import request from '../request/request';
 const getMalibourneTours = async (filter) => {
     console.log("Get maliborune tour", filter)
 
-    let query = "tour.json?";
+    let query = "tour.json?count=9&";
 
     const buildSubQuery = function (key, value) {
         console.log("Subquery", key, value)
@@ -25,6 +25,11 @@ const getMalibourneTours = async (filter) => {
 
     console.log("LINK", `${query}`)
     const res = await request(`${query}`, 'GET')
+    return res;
+}
+
+const getTours = async (location) => {
+    const res = await request(`tour.json?location_ids=${location}`, 'GET')
     return res;
 }
 
@@ -62,6 +67,7 @@ const getTopMalbourneTours = async () => {
 
 export {
     getMalibourneTours,
+    getTours,
     getTour,
     getTopMalbourneTours
 }

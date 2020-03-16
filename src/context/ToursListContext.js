@@ -9,7 +9,7 @@ function ToursListProvider({ children }) {
     const [isLoading, setIsLoading] = useState(true)
     const [tourFilter, setTourFilter] = useState({
         location_ids: "Melbourne",
-        price: "",
+        // price: [0, 1000],
         order_by: "-score"
     })
 
@@ -28,8 +28,25 @@ function ToursListProvider({ children }) {
         setTourFilter({ ...tourFilter, location_ids: event })
     }
 
-    function changePriceOrder(event, newValue) {
-        setTourFilter({ ...tourFilter, price: event })
+    function changePrice(event, newValue) {
+        console.log('Change price', event, newValue.name)
+
+        // let price = [];
+        // if (newValue.name === 'min') {
+        //     price[0] = parseInt(newValue.value)
+        // } else {
+        //     price[1] = parseInt(newValue.value)
+        // }
+
+        // console.log("P", price)
+        // setTourFilter({
+        //     ...tourFilter,
+        //     annotate: 'converted_price:AUD',
+        //     converted_price: price[0],
+        //     converted_price: price[1],
+        //     order_by: 'converted_price'
+
+        // })
     }
 
     function changeRatingOrder(event, newValue) {
@@ -57,7 +74,7 @@ function ToursListProvider({ children }) {
             toursList,
             isLoading,
             onFilter,
-            changePriceOrder,
+            changePrice,
             changeRatingOrder,
             changeTitle
         }} >

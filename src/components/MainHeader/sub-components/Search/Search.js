@@ -1,89 +1,132 @@
 import React, { useState, useEffect } from 'react';
-import { Input } from 'semantic-ui-react'
+import { Input, Image, Grid } from 'semantic-ui-react'
 import './Search_styles.scss';
+import { getMalibourneTours, getTours } from '../../../../services/api/tours';
 
-const fakeData = [
-    {
-        "title": "Lakin - Kessler",
-        "description": "Decentralized mobile superstructure",
-        "image": "https://s3.amazonaws.com/uifaces/faces/twitter/hafeeskhan/128.jpg",
-        "price": "$28.30"
-    },
-    {
-        "title": "Cartwright Group",
-        "description": "User-centric local success",
-        "image": "https://s3.amazonaws.com/uifaces/faces/twitter/itskawsar/128.jpg",
-        "price": "$96.82"
-    },
-    {
-        "title": "Lueilwitz, Kuhlman and McKenzie",
-        "description": "Up-sized maximized structure",
-        "image": "https://s3.amazonaws.com/uifaces/faces/twitter/petar_prog/128.jpg",
-        "price": "$43.22"
-    },
-    {
-        "title": "O'Keefe and Sons",
-        "description": "Customer-focused 5th generation capacity",
-        "image": "https://s3.amazonaws.com/uifaces/faces/twitter/kikillo/128.jpg",
-        "price": "$63.22"
-    },
-    {
-        "title": "Buckridge, Considine and Buckridge",
-        "description": "Object-based zero tolerance paradigm",
-        "image": "https://s3.amazonaws.com/uifaces/faces/twitter/bighanddesign/128.jpg",
-        "price": "$26.35"
-    }
-]
 
-const INITIAL_STATE_SEARCH = {
-    isLoading: false,
-    results: [],
-    value: '',
-    isOpen: false,
-}
+import { BrowserRouter as Router, Switch, Route, Link, useLocation, useHistory } from 'react-router-dom';
 
-//TODO: Build a custom search... Semantic UI has Zero customisation. 
+// const INITIAL_STATE_SEARCH = {
+//     isLoading: false,
+//     results: [],
+//     value: '',
+//     isOpen: false,
+// }
+
+//TODO: Build a custom search. 
 const SearchBar = () => {
-    const [state, setState] = useState(INITIAL_STATE_SEARCH)
+    // const [state, setState] = useState(INITIAL_STATE_SEARCH)
+    const [isLoading, setIsLoading] = useState(false);
+    const [value, setValue] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+    const [tours, setTours] = useState([]);
+    const [filteredTours, setFilteredTours] = useState([]);
+    const history = useHistory();
+
+    function handleResultSelect(e) {
+        setIsLoading(true)
+        setValue(e)
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 250)
+    }
+
+    function filteredData() {
+
+        // if (!filteredTours) return;
+        let news = tours;
+        let newResults = news.filter((tour => tour.name.toLowerCase().includes(value.toLowerCase())))
+        console.log(newResults, "FFFF")
+        setFilteredTours(newResults)
+
+    }
 
     useEffect(() => {
-        setState({ results: fakeData })
-    }, [])
+        filteredData()
+    }, [value])
 
-    function handleResultSelect() {
-
-    }
-
-    function handleSearchChange() {
-
-    }
 
     function populateResults() {
-        if (state.results.length === 0) {
+        if (filteredTours && filteredTours.length === 0) {
             return "No tours found.";
         }
-        return state.results;
+        return (
+            filteredTours && filteredTours.map(tour => {
+                return (
+                    <a href={`/tours/${tour.id}`}>
+                        <div key={tour.id} className="search-bar__results-li">
+
+                            <Image className="search-bar__results-img" src={tour.images[0].source_url} />
+
+                            <div>
+                                <h3>{tour.name}</h3>
+                                {tour.score.toFixed(2)}
+                                ${tour.price.amount}
+                            </div>
+                        </div>
+                    </a>
+                )
+            })
+        )
     }
 
+    console.log(tours)
     useEffect(() => {
-
+        const fetchTours = async () => {
+            const result = await getTours("Melbourne");
+            setTours(result.results)
+            if (!value === "") {
+                setFilteredTours(result.results)
+            }
+            setIsLoading(false)
+        };
+        fetchTours();
     }, [])
+
+    function onFocus() {
+        setIsOpen(true)
+    }
+
+    function onBlur() {
+        setIsOpen(false)
+    }
+
+    function onEnter(e) {
+        if (e.key === 'Enter') {
+            history.push("/tours");
+        }
+    }
 
     return (
         <div className="search-bar">
 
             <Input
+                onFocus={onFocus}
+                onBlur={onBlur}
+                onKeyDown={onEnter}
                 className="search-bar__input"
-                loading={state.isLoading ? true : false}
+                loading={isLoading ? true : false}
                 icon='search'
+                onChange={(e) => handleResultSelect(e.target.value)}
+                value={value}
                 placeholder='Search...'
             />
-            <div className={`search-bar__results ${state.isOpen ? 'is-open' : ""}`}>
-                {/* {populateResults()} */}
-                <div>
-                    <h1>Hello</h1>
-                </div>
+            <div className={`search-bar__results ${isOpen ? 'is-open' : ""}`}>
+                <div className="search-bar__results-outer">
+                    <div className="search-bar__results-inner">
+                        {/* {populateResults()} */}
+                        <div>
+                            {
+                                populateResults()
+                            }
 
+                        </div>
+
+                    </div>
+                </div>
+                <div className="search-bar__results-footer">
+                    <a href="/tours">View All ({filteredTours.length})</a>
+                </div>
             </div>
         </div>
     );

@@ -1,27 +1,29 @@
 import React from 'react';
-
 import { BrowserRouter as Router } from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css';
 
+import 'semantic-ui-css/semantic.min.css';
 import { MainHeader, Footer } from './../components/index';
-import Routes from './Routes';
+
 import { AuthProvider } from '../context/ContextAuth';
+import { ToursListProvider } from '../context/ToursListContext';
 
 import './Layout_styles.scss';
+import Routes from './Routes';
 
 function App() {
     return (
         <AuthProvider>
-            <Router>
-                <MainHeader />
+            <ToursListProvider>
 
-                <Routes />
+                <Router>
+                    <MainHeader />
 
-                <Footer />
-            </Router>
+                    <Routes />
 
-            {/* Modal */}
+                    <Footer />
+                </Router>
 
+            </ToursListProvider>
         </AuthProvider>
     );
 }

@@ -42,7 +42,7 @@ const TourItem = ({ tour, loading }) => {
             <Link className="tour-item__content-link" to={`/tours/${tour.id}`}>
 
                 <Card.Content className="tour-item__content">
-                    <div>
+                    <div className="tour-item__header">
                         <Card.Meta>{tour.vendor}</Card.Meta>
                         <Card.Header className="tour-item__title">{tour.name}</Card.Header>
                     </div>

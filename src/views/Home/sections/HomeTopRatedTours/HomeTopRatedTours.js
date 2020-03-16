@@ -40,16 +40,20 @@ function HomeTopRatedTours() {
     }, [])
 
     return (
-
-        <Container style={{ 'padding': '15px 0' }} >
+        //TODO: Refactor
+        <Container style={{
+            'padding': '75px 0', 'text-align': 'center', 'width': '800px',
+            'margin': '0 auto'
+        }} >
             <h1>Best Offers</h1>
-            <Grid columns='three' divided>
+
+            <Grid style={{ 'padding': '32px 0' }} columns='three' stackable>
                 <Grid.Row>
                     {renderMalbourneTours()}
                 </Grid.Row>
             </Grid>
 
-            <Button color="red">View all tours</Button>
+            <Button color="red" href="/tours">View all tours</Button>
         </Container>
 
     )

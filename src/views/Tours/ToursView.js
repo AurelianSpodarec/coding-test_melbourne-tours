@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getMalibourneTours } from '../../services/api/tours';
 import { Banner, TourItem } from '../../components';
 
 import { Grid, Image, Dropdown, Container, Input } from 'semantic-ui-react'
+import { ToursListContext } from './../../context/ToursListContext';
 
 import './ToursView_styles.scss';
+
 
 function ToursView() {
     const [toursList, setToursList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const tours = useSelector(state => state)
-    console.log("Tours view Redux:", tours)
+
+    const toursProvider = useContext(ToursListContext)
+    console.log("Tours view context:", toursProvider)
 
     useEffect(() => {
         const fetchTours = async () => {
@@ -26,13 +29,13 @@ function ToursView() {
     function renderMalbourneTours() {
         if (isLoading) {
             return [...Array(9)].map((x, i) =>
-                <Grid.Column key={i}>
+                <Grid.Column mobile={16} tablet={8} computer={5} padded style={{ 'margin-bottom': '32px' }} key={i}>
                     <TourItem loading />
                 </Grid.Column>
             )
         } else if (toursList.length) {
             return toursList.map(tour =>
-                <Grid.Column mobile={16} tablet={8} computer={4} padded style={{ 'margin-bottom': '32px' }} key={tour.id}>
+                <Grid.Column mobile={16} tablet={8} computer={5} padded style={{ 'margin-bottom': '32px' }} key={tour.id}>
                     <TourItem tour={tour} />
                 </Grid.Column>
             )

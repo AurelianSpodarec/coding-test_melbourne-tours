@@ -34,11 +34,15 @@ function AuthDialog({ open, close }) {
         await signIn({ email: "admin@gmail.com", password: "admin123" })
     }
 
+    async function onGuest() {
+        await signIn({ email: "guest@gmail.com", password: "guest123" })
+    }
+
 
     return (
         <>
             <Modal open={open} size="tiny" onClose={close}>
-                <Button onClick={onSignIn}>Sign in</Button>
+
                 <div>
                     <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
                         <h1>Sign up</h1>
@@ -68,10 +72,38 @@ function AuthDialog({ open, close }) {
                         <Form.Field control={Button}> <Button color='red'>Sign Up</Button></Form.Field>
                     </Form>
 
-                    <form>
-                        <h1>Log in</h1>
+                    <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
+                        <h1>Login</h1>
+                        <Input
+                            iconPosition='left'
+                            value={values.email}
+                            onChange={handleChange}
+                            placeholder='Email'
+                            name="email"
+                            type="email"
+                        >
+                            <Icon name='at' />
+                            <input />
+                        </Input>
+                        <Input
+                            iconPosition='left'
+                            value={values.password}
+                            onChange={handleChange}
+                            placeholder='Password'
+                            name="password"
+                            type="password"
+                        >
+                            <Icon name='lock' />
+                            <input />
+                        </Input>
 
-                    </form>
+                        <Form.Field control={Button}> <Button color='red'>Sign Up</Button></Form.Field>
+                    </Form>
+
+                    <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
+                        <h1>Log in as guest</h1>
+                        <Button onClick={onGuest}>Login as Guest</Button>
+                    </Form>
                 </div>
             </Modal>
         </>

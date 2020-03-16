@@ -3,8 +3,7 @@ import { Input, Image, Grid } from 'semantic-ui-react'
 import './Search_styles.scss';
 import { getMalibourneTours, getTours } from '../../../../services/api/tours';
 
-
-import { BrowserRouter as Router, Switch, Route, Link, useLocation, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
 // const INITIAL_STATE_SEARCH = {
 //     isLoading: false,
@@ -32,8 +31,7 @@ const SearchBar = () => {
     }
 
     function filteredData() {
-
-        // if (!filteredTours) return;
+        if (!filteredTours) return;
         let news = tours;
         let newResults = news.filter((tour => tour.name.toLowerCase().includes(value.toLowerCase())))
         console.log(newResults, "FFFF")
@@ -59,8 +57,8 @@ const SearchBar = () => {
                             <Image className="search-bar__results-img" src={tour.images[0].source_url} />
 
                             <div>
-                                <h3>{tour.name}</h3>
-                                {tour.score.toFixed(2)}
+                                <h3>{tour.name && tour.name}</h3>
+                                {tour.score && tour.score.toFixed(2)}
                                 ${tour.price.amount}
                             </div>
                         </div>
@@ -70,7 +68,6 @@ const SearchBar = () => {
         )
     }
 
-    console.log(tours)
     useEffect(() => {
         const fetchTours = async () => {
             const result = await getTours("Melbourne");
@@ -99,7 +96,7 @@ const SearchBar = () => {
 
     return (
         <div className="search-bar">
-
+            {/* TODO: When clicking link, it closes instead of going there. onBlur is causing the bug */}
             <Input
                 onFocus={onFocus}
                 onBlur={onBlur}
@@ -114,14 +111,9 @@ const SearchBar = () => {
             <div className={`search-bar__results ${isOpen ? 'is-open' : ""}`}>
                 <div className="search-bar__results-outer">
                     <div className="search-bar__results-inner">
-                        {/* {populateResults()} */}
                         <div>
-                            {
-                                populateResults()
-                            }
-
+                            {populateResults()}
                         </div>
-
                     </div>
                 </div>
                 <div className="search-bar__results-footer">

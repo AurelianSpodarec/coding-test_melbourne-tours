@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    items: [],
+    tours: [],
     searchQuery: {
         price: '-score',
     },
@@ -10,6 +10,8 @@ const INITIAL_STATE = {
 
 const toursReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case 'FETCH_TOURS':
+            return { tours: { ...state.tours, ...action.payload.data.tours } }
         case 'LOAD_TOURS_LOADING':
             return {
                 ...state,

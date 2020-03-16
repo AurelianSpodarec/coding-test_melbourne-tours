@@ -62,7 +62,6 @@ const NavBar = (props) => {
             </div>
         )
     }
-    console.log("DDDD", Responsive.onlyMobile.maxWidth)
 
     return (
         <>
@@ -74,7 +73,7 @@ const NavBar = (props) => {
 
                 <div className="navbar__desktop">
                     <ul className="navbar__ul">
-                        <li className="navbar__li" active><Link className="navbar__link" to="/">Home</Link></li>
+                        <li className="navbar__li"><Link className="navbar__link" to="/">Home</Link></li>
                         <li className="navbar__li"><Link className="navbar__link" to="/tours">Tours</Link></li>
                         <li className="navbar__li"><Link className="navbar__link" to="/About">About</Link></li>
                         {authData.isAuthenticated ?
@@ -112,14 +111,14 @@ const NavBar = (props) => {
 
                             <>
 
-                                <li active><Link to="/">Log In</Link></li>
-                                <li active><Link to="/">Sign Up</Link></li>
+                                <li><Link to="/">Log In</Link></li>
+                                <li><Link to="/">Sign Up</Link></li>
 
                             </>
                         }
 
 
-                        <li active><Link to="/">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><Link to="/tours">Tours</Link></li>
                     </ul>
                 </div>

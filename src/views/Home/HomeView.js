@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { HomeVideo, HomeTopRatedTours } from './sections';
 
-import { Icon, Input, Button, Form, Image, Container, Grid } from 'semantic-ui-react'
+import { Image, Grid } from 'semantic-ui-react'
 import { useForm } from '../../hooks';
 import { signUp, signIn } from '../../services/api/auth';
 

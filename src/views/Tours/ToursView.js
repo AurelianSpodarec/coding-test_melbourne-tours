@@ -26,13 +26,13 @@ function ToursView() {
     function renderMalbourneTours() {
         if (isLoading) {
             return [...Array(9)].map((x, i) =>
-                <Grid.Column>
+                <Grid.Column key={i}>
                     <TourItem loading />
                 </Grid.Column>
             )
         } else if (toursList.length) {
             return toursList.map(tour =>
-                <Grid.Column>
+                <Grid.Column key={tour.id}>
                     <TourItem tour={tour} />
                 </Grid.Column>
             )

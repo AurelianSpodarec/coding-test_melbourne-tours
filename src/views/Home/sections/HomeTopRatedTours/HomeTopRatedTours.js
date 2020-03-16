@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Icon, Input, Button, Form, Image, Container, Grid } from 'semantic-ui-react'
+import { Button, Container, Grid } from 'semantic-ui-react'
 import { TourItem } from '../../../../components';
 import { getTopMalbourneTours } from '../../../../services/api/tours';
 

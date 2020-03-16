@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Grid, Header, Segment, Input } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
 import './Search_styles.scss';
 
 const fakeData = [

@@ -23,7 +23,7 @@ const TourItem = ({ tour, loading }) => {
     }
 
     return (
-        <Card className="tour-item">
+        <Card className="tour-item" key={tour.id}>
 
             <div className="tour-item__image-wrap">
 

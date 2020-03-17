@@ -23,8 +23,19 @@ const signOut = async () => {
     })
 }
 
+function updateUser(name) {
+    console.log("update user requst")
+    const user = firebase.auth().currentUser
+        .updateProfile({
+            displayName: name
+        });
+    return user;
+}
+
+
 export {
     signUp,
     signIn,
-    signOut
+    signOut,
+    updateUser
 }

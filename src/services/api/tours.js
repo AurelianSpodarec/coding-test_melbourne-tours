@@ -3,7 +3,7 @@ import request from '../request/request';
 const getMalibourneTours = async (filter) => {
     console.log("Get maliborune tour", filter)
 
-    let query = "tour.json?count=9&";
+    let query = "tour.json?count=9&annotate=converted_price:AUD&";
 
     const buildSubQuery = function (key, value) {
         console.log("Subquery", key, value)

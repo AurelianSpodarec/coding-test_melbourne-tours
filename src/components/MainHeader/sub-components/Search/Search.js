@@ -18,7 +18,6 @@ const SearchBar = () => {
     // const [state, setState] = useState(INITIAL_STATE_SEARCH)
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState("");
-    const [isOpen, setIsOpen] = useState(false);
     const [tours, setTours] = useState([]);
     const [filteredTours, setFilteredTours] = useState([]);
     const [onFocus, setOnFocus] = useState(false)
@@ -87,8 +86,6 @@ const SearchBar = () => {
         if (!onFocus) {
             setOnFocus(true)
         }
-        // setOnFocus(true)
-        setIsOpen(true)
     }
 
     function onBlur() {

@@ -49,7 +49,6 @@ const NavBar = (props) => {
         setOpenAuthModal(false)
     }
 
-    console.log(authData.user.photoURL, "NAVVVVVVVVVVVVVVVV")
     return (
         <>
             <Menu.Menu className={`navbar ${isOpen ? 'is-open' : ""}`}>

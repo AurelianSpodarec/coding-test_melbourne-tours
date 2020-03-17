@@ -71,8 +71,8 @@ function MyProfileView() {
 
         <div>
             <Banner image="https://newcastlebeach.org/images/melbourne-tour.jpg" />
-            My profile View
-            {console.log("Current user", authData.user)}
+            {authData.isAuthenticated ? "" : "You must be logged in to perform these actions! - need to create protected routes"}
+            <div>My profile View</div>
             <Image src={imageAsUrl} />
             <div>
                 <div>AVATAR: {authData.user && authData.user.photoURL ? <Image src={authData.user.photoURL} /> : "No image"}</div>

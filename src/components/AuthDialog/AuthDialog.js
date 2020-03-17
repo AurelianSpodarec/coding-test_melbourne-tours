@@ -14,6 +14,8 @@ import {
     Form,
     Segment
 } from 'semantic-ui-react'
+import AuthLogin from './AuthLogin';
+import AuthRegister from './AuthRegister';
 
 // import './MainHeader_styles.scss';
 
@@ -23,18 +25,10 @@ const INITIAL_STATE_REGISTER = {
 }
 
 function AuthDialog({ open, close }) {
-    const { handleChange, handleSubmit, values } = useForm(onRegisterSubmit, INITIAL_STATE_REGISTER);
+    const { handleChange, handleSubmit, values } = useForm(onGuestLogin, INITIAL_STATE_REGISTER);
 
-    async function onRegisterSubmit() {
-        console.log("Reigster")
-        await signUp({ email: values.email, password: values.password })
-    }
 
-    async function onSignIn() {
-        await signIn({ email: "admin@gmail.com", password: "admin123" })
-    }
-
-    async function onGuest() {
+    async function onGuestLogin() {
         await signIn({ email: "guest@gmail.com", password: "guest123" })
     }
 
@@ -44,65 +38,14 @@ function AuthDialog({ open, close }) {
             <Modal open={open} size="tiny" onClose={close}>
 
                 <div>
-                    <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
-                        <h1>Sign up</h1>
-                        <Input
-                            iconPosition='left'
-                            value={values.email}
-                            onChange={handleChange}
-                            placeholder='Email'
-                            name="email"
-                            type="email"
-                        >
-                            <Icon name='at' />
-                            <input />
-                        </Input>
-                        <Input
-                            iconPosition='left'
-                            value={values.password}
-                            onChange={handleChange}
-                            placeholder='Password'
-                            name="password"
-                            type="password"
-                        >
-                            <Icon name='lock' />
-                            <input />
-                        </Input>
 
-                        <Form.Field control={Button}> <Button color='red'>Sign Up</Button></Form.Field>
-                    </Form>
+                    <AuthRegister />
 
-                    <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
-                        <h1>Login</h1>
-                        <Input
-                            iconPosition='left'
-                            value={values.email}
-                            onChange={handleChange}
-                            placeholder='Email'
-                            name="email"
-                            type="email"
-                        >
-                            <Icon name='at' />
-                            <input />
-                        </Input>
-                        <Input
-                            iconPosition='left'
-                            value={values.password}
-                            onChange={handleChange}
-                            placeholder='Password'
-                            name="password"
-                            type="password"
-                        >
-                            <Icon name='lock' />
-                            <input />
-                        </Input>
+                    <AuthLogin />
 
-                        <Form.Field control={Button}> <Button color='red'>Sign Up</Button></Form.Field>
-                    </Form>
-
-                    <Form onSubmit={onRegisterSubmit} noValidate autoComplete="off">
+                    <Form onSubmit={onGuestLogin} noValidate autoComplete="off">
                         <h1>Log in as guest</h1>
-                        <Button onClick={onGuest}>Login as Guest</Button>
+                        <Button onClick={onGuestLogin}>Login as Guest</Button>
                     </Form>
                 </div>
             </Modal>

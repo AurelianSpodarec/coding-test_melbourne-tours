@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-
 // }
 
 //TODO: Build a custom search. 
+//TODO: REfacor the entire code
 const SearchBar = () => {
     // const [state, setState] = useState(INITIAL_STATE_SEARCH)
     const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +21,7 @@ const SearchBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [tours, setTours] = useState([]);
     const [filteredTours, setFilteredTours] = useState([]);
+    const [onFocus, setOnFocus] = useState(false)
     const history = useHistory();
 
     function handleResultSelect(e) {
@@ -51,8 +53,8 @@ const SearchBar = () => {
         return (
             filteredTours && filteredTours.map(tour => {
                 return (
-                    <a href={`/tours/${tour.id}`}>
-                        <div key={tour.id} className="search-bar__results-li">
+                    <a key={tour.id} href={`/tours/${tour.id}`}>
+                        <div className="search-bar__results-li">
 
                             <Image className="search-bar__results-img" src={tour.images[0].source_url} />
 
@@ -80,12 +82,27 @@ const SearchBar = () => {
         fetchTours();
     }, [])
 
-    function onFocus() {
+    function isFocus() {
+
+        if (!onFocus) {
+            setOnFocus(true)
+        }
+        // setOnFocus(true)
         setIsOpen(true)
     }
 
     function onBlur() {
-        setIsOpen(false)
+        if (onFocus) {
+            setOnFocus(false)
+        }
+        // setIsOpen(onFocus)
+    }
+
+    function onLeave() {
+        console.log("On live")
+        if (!onFocus) {
+            setOnFocus(true)
+        }
     }
 
     function onEnter(e) {
@@ -98,7 +115,7 @@ const SearchBar = () => {
         <div className="search-bar">
             {/* TODO: When clicking link, it closes instead of going there. onBlur is causing the bug */}
             <Input
-                onFocus={onFocus}
+                onFocus={isFocus}
                 onBlur={onBlur}
                 onKeyDown={onEnter}
                 className="search-bar__input"
@@ -108,7 +125,7 @@ const SearchBar = () => {
                 value={value}
                 placeholder='Search...'
             />
-            <div className={`search-bar__results ${isOpen ? 'is-open' : ""}`}>
+            <div onMouseDown={isFocus} onMouseLeave={onLeave} className={`search-bar__results ${onFocus ? 'is-open' : ""}`} >
                 <div className="search-bar__results-outer">
                     <div className="search-bar__results-inner">
                         <div>

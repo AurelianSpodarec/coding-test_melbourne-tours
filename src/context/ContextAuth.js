@@ -5,7 +5,8 @@ import firebase from './../firebase';
 
 export const AuthContext = createContext();
 
-// const storageRef = firebase.storage().ref()
+export const storageRef = firebase.storage().ref().child('images')
+
 
 // const userProfilePicture = storageRef.child('images')
 

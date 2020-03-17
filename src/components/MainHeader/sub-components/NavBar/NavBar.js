@@ -32,10 +32,8 @@ const NavBar = (props) => {
     const dropdownTrigger = (
         <li>
             <span className="navbar__user-name">{authData.user && authData.user.email}</span>
-
-            {authData.user && authData.user.profile ? <Image avatar src={authData.user.profile} /> :
+            {authData.user && authData.user.photoURL ? <Image avatar src={authData.user.photoURL} /> :
                 <Icon className="navbar__user-avatar" size="big" name="user circle" />}
-
         </li>
     )
 
@@ -51,19 +49,7 @@ const NavBar = (props) => {
         setOpenAuthModal(false)
     }
 
-    function CustomMenu() {
-        if (!isMobile) {
-            return (
-                <li>MENU</li>
-            )
-        }
-        return (
-            <div>
-                AVATAR SLIDe
-            </div>
-        )
-    }
-
+    console.log(authData.user.photoURL, "NAVVVVVVVVVVVVVVVV")
     return (
         <>
             <Menu.Menu className={`navbar ${isOpen ? 'is-open' : ""}`}>
@@ -104,7 +90,7 @@ const NavBar = (props) => {
                         {authData.isAuthenticated ?
 
                             <>
-                                authData && authData.photo ? "Avatar" : <Icon name="user circle" />
+                                {authData && authData.user.photoURL ? <Image src={authData.user.photoURL} /> : <Icon name="user circle" />}
                                 <span>{authData && authData.email}</span>
                             </>
                             :

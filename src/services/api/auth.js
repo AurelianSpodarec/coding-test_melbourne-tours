@@ -23,7 +23,8 @@ const signOut = async () => {
     })
 }
 
-function updateUser(name) {
+//TODO: Put into separate file
+export function updateUser(name) {
     console.log("update user requst")
     const user = firebase.auth().currentUser
         .updateProfile({
@@ -32,10 +33,13 @@ function updateUser(name) {
     return user;
 }
 
+//TODO: Put into separate file
+export function uploadUserAvatar() {
+
+}
 
 export {
     signUp,
     signIn,
     signOut,
-    updateUser
 }

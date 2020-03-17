@@ -55,13 +55,8 @@ function ToursListProvider({ children }) {
     }
 
     const onFilter = function () {
-        // console.log("On FIlter clicked", car)
         fetchToursList()
     }
-
-    // useEffect(() => {
-    //     fetchToursList()
-    // }, [])
 
     useEffect(() => {
         onFilter()
@@ -84,33 +79,7 @@ function ToursListProvider({ children }) {
 
 }
 
-
 export {
     ToursListContext,
     ToursListProvider
 }
-
-
-// import React, { createContext, useContext, useEffect, useState } from 'react'
-
-// const ToursListContext = createContext();
-
-// function ToursListProvider({ children }) {
-
-
-
-
-//     return (
-//         <ToursListContext.Provider value={{
-//             heel: 'd'
-//         }} >
-//             {children}
-//         </ToursListContext.Provider >
-//     )
-
-// }
-
-// export {
-//     ToursListContext,
-//     ToursListProvider
-// }

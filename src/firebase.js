@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/database";
+import 'firebase/storage';
 
 // TODO: Install env and add .env into gitignore because these should be private(although in this case not)
 // const firebaseConfig = {
